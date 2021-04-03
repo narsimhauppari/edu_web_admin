@@ -1,0 +1,37 @@
+<!-- <app-navigation></app-navigation> -->
+<h1 align="center">Create Customer</h1>
+<div class="col-md-4 m-5 pb-5">
+  <form [formGroup]="createCustomerForm" (ngSubmit)="createCustomer()">
+    <div class="form-group">
+      <label>Car Brand : </label>
+      <input type="text" class="form-control" formControlName="brand" placeholder="Enter brand name">
+      <span class="warning" *ngIf="createCustomerForm.controls['brand'].errors?.required">
+        *brand name is required </span>
+    </div>
+
+    <div class="form-group">
+      <label>Car Color : </label>
+      <input type="text" class="form-control" formControlName="color" placeholder="Enter car color">
+    </div>
+
+    <div class="form-group">
+      <label>Manufacture Year : </label>
+      <input type="number" class="form-control" formControlName="year" placeholder="Enter yaer">
+      <span class="warning" *ngIf="createCustomerForm.controls['year'].errors?.max || createCustomerForm.controls['year'].errors?.min || createCustomerForm.controls['year'].errors?.patters ">
+        *Invalid year </span>
+    </div>
+
+    <div class="form-group">
+      <label>Car Price : </label>
+      <input type="text" class="form-control" formControlName="price" placeholder="Enter price">
+      <span class="warning" *ngIf="createCustomerForm.controls['price'].errors?.price">
+        *Please enter a valid price </span>
+    </div>
+    <button type="reset" class="btn btn-warning mr-1">Reset</button>
+    <button type="submit" [disabled]="!createCustomerForm.valid" class="btn btn-primary">{{isAddNewCar}}</button>
+  </form>
+</div>
+
+{{createCustomerForm.value | json}}
+
+<p-toast position="top-right" [baseZIndex]="5000"></p-toast>
